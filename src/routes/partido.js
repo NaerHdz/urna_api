@@ -2,6 +2,23 @@ const express = require('express');
 const router = express.Router();
 const Partido = require('../models/Partido');
 
+//Obtener todos los partidos
+router.get('/', (req, res) => {
+	Partido.find({}).exec((err, partido) => {
+		if (err) {
+			return res.status(400).json({
+				ok: false,
+				err
+			});
+		}
+
+		res.status(200).json({
+			ok: true,
+			partido
+		});
+	});
+});
+
 //Agregar partidos
 router.post('/', (req, res) => {
 	const partido = new Partido({
