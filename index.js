@@ -24,6 +24,6 @@ app.use(bodyParser.json());
 app.use('/api', require('./src/routes/index'));
 
 //pueto a escuchar
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
 	console.log(`Escuchando en el puerto 3000`);
 });
