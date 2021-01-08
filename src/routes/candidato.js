@@ -19,6 +19,25 @@ router.get('/', (req, res) => {
 	});
 });
 
+//Obtener a un candidato en especifico
+router.get('/:id', (req, res) => {
+	let id = req.params.id;
+
+	votos = Candidato.findById(id).exec((err, cand) => {
+		if (err) {
+			res.status(400).json({
+				ok: false,
+				err
+			});
+		}
+
+		res.json({
+			ok: true,
+			cand
+		});
+	});
+});
+
 //agregar a un candidatos
 router.post('/', (req, res) => {
 	const candidato = new Candidato({
