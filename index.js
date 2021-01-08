@@ -6,10 +6,11 @@ const app = express();
 
 const password = 'tallerdeword';
 const db = 'urna';
+const port = process.env.PORT || 3000;
 // Conexion a la base de datos
 mongoose
 	.connect(
-		`mongodb+srv://elCrikoso:${password}@taller-investigacion-2.7avvy.mongodb.net/<dbname>?retryWrites=true&w=majority`,
+		`mongodb+srv://elCrikoso:${password}@taller-investigacion-2.7avvy.mongodb.net/${db}?retryWrites=true&w=majority`,
 		{ useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false }
 	)
 	.then((db) => console.log('base de datos conectada con exito'))
@@ -24,6 +25,6 @@ app.use(bodyParser.json());
 app.use('/api', require('./src/routes/index'));
 
 //pueto a escuchar
-app.listen(process.env.PORT, () => {
-	console.log(`Escuchando en el puerto 3000`);
+app.listen(port, () => {
+	console.log(`Escuchando en el puerto ${port}`);
 });
