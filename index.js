@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //rutas
-app.use('/api', require('./routes/index'));
+app.use('/api', require('./src/routes/index'));
 
 //pueto a escuchar
 app.listen(3000, () => {
