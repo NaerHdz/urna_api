@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
 	let id = req.params.id;
 
-	votos = Candidato.findById(id).exec((err, cand) => {
+	Candidato.findById(id).exec((err, cand) => {
 		if (err) {
 			res.status(400).json({
 				ok: false,

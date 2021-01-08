@@ -19,6 +19,25 @@ router.get('/', (req, res) => {
 	});
 });
 
+//Obtener a un partido en especifico
+router.get('/:id', (req, res) => {
+	let id = req.params.id;
+
+	Partido.findById(id).exec((err, cand) => {
+		if (err) {
+			res.status(400).json({
+				ok: false,
+				err
+			});
+		}
+
+		res.json({
+			ok: true,
+			cand
+		});
+	});
+});
+
 //Agregar partidos
 router.post('/', (req, res) => {
 	const partido = new Partido({
