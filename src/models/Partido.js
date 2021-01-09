@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const PartidoModel = new Schema({
 	image: { type: String },
 	name: { type: String },
+	code: { type: String },
 	color: { type: String },
 	dark: { type: Boolean }
 });

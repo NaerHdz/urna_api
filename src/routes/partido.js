@@ -43,6 +43,7 @@ router.post('/', (req, res) => {
 	const partido = new Partido({
 		image: req.body.image,
 		name: req.body.name,
+		code: req.body.code,
 		color: req.body.color,
 		dark: req.body.dark
 	});
