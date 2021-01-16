@@ -42,6 +42,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
 	const usuario = new Usuario({
 		nombre: req.body.nombre,
+		apPat: req.body.apPat,
+		apMat: req.body.apMat,
+		pass: req.body.pass,
 		lugar: req.body.lugar,
 		casilla: req.body.casilla,
 		codigoINE: req.body.codigoINE,
@@ -63,25 +66,17 @@ router.post('/', (req, res) => {
 	});
 });
 
-router.post('/', (req, res) => {
-	const usuario = new Usuario({
-		nombre: req.body.nombre,
-		lugar: req.body.lugar,
-		casilla: req.body.casilla,
-		codigoINE: req.body.codigoINE,
-		votoEmitido: req.body.votoEmitido
-	});
-
-	usuario.find( 
+router.post('/login', (req, res) => {
+	Usuario.find( 
 		{
 			codigoINE: req.body.codigoINE,
 			pass: req.body.pass
 		}
 	).exec((err, user) => {
-		if (err) {
+		if (!user[0]) {
 			return res.status(400).json({
 				ok: false,
-				err
+				err: "CodigoINE/Contraseña erronea"
 			});
 		}
 
