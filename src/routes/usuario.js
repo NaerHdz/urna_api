@@ -63,4 +63,33 @@ router.post('/', (req, res) => {
 	});
 });
 
+router.post('/', (req, res) => {
+	const usuario = new Usuario({
+		nombre: req.body.nombre,
+		lugar: req.body.lugar,
+		casilla: req.body.casilla,
+		codigoINE: req.body.codigoINE,
+		votoEmitido: req.body.votoEmitido
+	});
+
+	usuario.find( 
+		{
+			codigoINE: req.body.codigoINE,
+			pass: req.body.pass
+		}
+	).exec((err, user) => {
+		if (err) {
+			return res.status(400).json({
+				ok: false,
+				err
+			});
+		}
+
+		res.status(200).json({
+			ok: true,
+			user
+		});
+	});
+});
+
 module.exports = router;
